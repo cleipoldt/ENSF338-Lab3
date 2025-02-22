@@ -1,4 +1,5 @@
-import timeit, numpy as np, matplotlib.pyplot as plt
+import sys, timeit, numpy as np, matplotlib.pyplot as plt
+sys.setrecursionlimit(20000)
 
 def linear_search(arr, elem):
     index = 0
@@ -8,7 +9,6 @@ def linear_search(arr, elem):
         index += 1
     return -1
 
-# edit so partition always poorly divides 
 def partition(arr, low, high):
     pivot = arr[high]
     i = low - 1
@@ -47,14 +47,13 @@ def main():
         linear_time = 0
         binary_time = 0
         element_list = [x for x in range(num)]
-        item = np.random.choice(element_list)
         for i in range(100):
-            np.random.shuffle(element_list)
+            item = np.random.choice(element_list)
             linear_time += timeit.timeit(stmt = 'linear_search(element_list, item)', number = 1, globals = {'item': item, 'linear_search': linear_search, 'element_list': element_list})
-            np.random.shuffle(element_list)
             binary_time += timeit.timeit(stmt = 'quick_sort(element_list, 0, len(element_list)-1);binary_search(element_list, item)', number = 1, globals = {'item': item, 'quick_sort': quick_sort, "binary_search": binary_search, "element_list": element_list})
         linear_list.append(linear_time)
         binary_list.append(binary_time)
+
     
     plt.plot(input_list, linear_list, label = 'Linear Search', color = 'red')
     plt.plot(input_list, binary_list, label = 'Quick Sort + Binary Search', color = 'blue')
@@ -66,3 +65,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
+5.  The quick sort algorithm implemented in this exercise chooses the last element of the array or subarray as the pivot. The input that causes quick sort to be in its worst case is when the pivot partitions the array into subarrays of size n-1 and 0. Thus, an array sorted from least to greatest as input causes the quicksort with the pivot at the last element to incur its worst case performance. Even in the average case, the linear search was faster than the quick sort + binary search, but in the worst case of the quick sort, its time complexity goes to O(n^2), further highlighting linear search as the better choice.
+"""

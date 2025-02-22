@@ -1,4 +1,5 @@
-import timeit, numpy as np, matplotlib.pyplot as plt
+import sys, timeit, numpy as np, matplotlib.pyplot as plt
+sys.setrecursionlimit(20000)
 
 def linear_search(arr, elem):
     index = 0
@@ -68,5 +69,5 @@ if __name__ == "__main__":
     main()
 
 """
-4.  
+4.  The exercise involved shuffling the array every time, so for the quick sort + binary search, the time complexities for both the sort and the search was accounted for, making the quick sort + binary search less effective than the linear search. If the exercise was modified so the array was only shuffled when the input size changed, the quick sort + binary search would have been much faster than the linear search. In the average case, the time complexities of quick sort, binary search, and linear search are O(n * log n), O(log n), and O(n).
 """
