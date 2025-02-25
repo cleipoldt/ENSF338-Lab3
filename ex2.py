@@ -4,9 +4,6 @@ import numpy as np
 
 sys.setrecursionlimit(200000)
 
-
-
-
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -48,13 +45,13 @@ def partition(arr, low, high):
 
 n = 0
 for i in range(20):
-    min1 = 0 + 2*n
-    max1 = 14 + 2*n
+    min = 0 + 2*n
+    max = 14 + 2*n
     array_size = 15 + 2*n
-    n += 17
-    array1 = np.random.randint(min1, max1, array1_size)
-    quicksort(array1, min1, max1)
-    print(array1)
+    n += 20
+    array = np.random.randint(min, max, array_size)
+    quicksort(array, min, max)
+    print(array)
 
 
 
