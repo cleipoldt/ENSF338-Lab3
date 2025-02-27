@@ -9,26 +9,39 @@ def merge_sort(arr, low, high):
         merge(arr, low, mid, high)
     return 
 
-'''
-merge() not correct, will still have to edit later. I'm not seeing the "merge" part in either function I thought the 
-merge sort would be in the merge_sort function but apparently it's in neither so I will need to figure that out
-'''
 
 def merge(arr, low, mid, high):
-    #for case when array only has 2 elements
-    if len(arr) == 2:
-        if (arr[low] < arr[high]):
-            return
-        else:
-            temp = arr[low]
-            arr[low] = arr[high]
-            arr[high] = temp
+    leftArr = []
+    rightArr = []
 
-    '''
-    if array has 3 or more elements (therefore at least one subarray will have 2 or more elements by pigeonhole)
-    so in this case we just look at the first element of the subarrays because they should already be sorted in the 
-    if case above (if len(arr) == 2)?
-    '''
+    for i in range(low, mid-low+1):
+        leftArr[i] = arr[low + i]
+
+    for j in range(mid+1, high+1):
+        rightArr[j] = arr[mid+1+j]
+    
+    i = 0     
+    j = 0     
+    k = low    
+
+    while i < (mid-low+1) and j < (mid+1+j):
+        if leftArr[i] <= rightArr[j]:
+            arr[k] = leftArr[i]
+            i += 1
+        else:
+            arr[k] = rightArr[j]
+            j += 1
+        k += 1
+
+    while i < (mid-low+1):
+        arr[k] = leftArr[i]
+        i += 1
+        k += 1
+
+    while j < (mid+1+j):
+        arr[k] = rightArr[j]
+        j += 1
+        k += 1
 
     return 
 
